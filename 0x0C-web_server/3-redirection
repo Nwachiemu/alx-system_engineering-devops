@@ -4,10 +4,12 @@
 sudo apt-get update
 sudo apt-get -y install nginx
 sudo ufw allow 'Nginx HTTP'
-# Make the web directory and set permissions for it
+
+# Create web directory and set permissions
 sudo mkdir -p /var/www/html/
 sudo chmod -R 755 /var/www
-# Make index.html file
+
+# Create index.html file
 echo 'Hello World!' > /var/www/html/index.html
 
 SERVER_CONFIG=\
@@ -25,6 +27,7 @@ SERVER_CONFIG=\
     }
 }"
 
+# Apply server configuration
 sudo bash -c "echo -e '$SERVER_CONFIG' > /etc/nginx/sites-enabled/default"
 
 if [ "$(pgrep -c nginx)" -le 0 ]; then
