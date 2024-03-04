@@ -1,4 +1,4 @@
-# Define custom HTTP header name and value
+# creating a custom HTTP header response, with Puppet
 # Install Nginx package
 package { 'nginx':
   ensure => installed,
