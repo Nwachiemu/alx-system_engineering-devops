@@ -16,6 +16,5 @@ file_line {'Adding_Header':
 # Enable and start Nginx service
 service { 'nginx':
   ensure  => running,
-  enable  => true,
   require => Package['nginx'],
 }
