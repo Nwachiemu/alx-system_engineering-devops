@@ -18,4 +18,4 @@ echo "
    server 175536-web-02 52.91.118.24 check
 " >> /etc/haproxy/haproxy.cfg
 
-sudo service haproxy start
+sudo service haproxy restart
