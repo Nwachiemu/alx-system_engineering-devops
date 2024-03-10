@@ -1,3 +1,4 @@
+
 global
         log /dev/log    local0
         log /dev/log    local1 notice
@@ -50,3 +51,4 @@ backend web_servers
         redirect scheme https if !{ ssl_fc }
         server 175536-web-01 35.153.66.229 check
         server 175536-web-02 52.91.118.24 check
+        
