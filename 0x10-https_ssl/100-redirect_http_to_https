@@ -39,7 +39,7 @@ defaults
 
 frontend nwachiemuchay.tech
         bind 0:80
-        bind 0:443 ssl crt /etc/ssl/private/nwachiemuchay.tech.pem
+        bind 0:443 ssl crt /etc/haproxy/certs/www.nwachiemuchay.tech.pem
         http-request redirect scheme https code 301 unless { ssl_fc }
         option forwardfor
         default_backend nwachiemuchay.tech_backend
