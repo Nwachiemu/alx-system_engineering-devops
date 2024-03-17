@@ -18,5 +18,6 @@ frontend nwachiemuchay-tech-frontend
 	default_backend nwachiemuchay-tech-backend
         backend nwachiemuchay-tech-backend
 	balance roundrobin
+
         server 175536-web-01 35.153.66.229:80 check
         server 175536-web-02 52.91.118.24:80 check
