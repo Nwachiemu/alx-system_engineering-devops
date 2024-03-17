@@ -40,7 +40,7 @@ frontend ssl_443
          reqadd X-Forwarded-Proto:\ https
          default_backend web_servers
 
-frontend swachiemuchay.tech
+frontend nwachiemuchay.tech
         bind 0:80
         reqadd X-Forwarded-Proto:\ http
         redirect scheme https code 301 if !{ ssl_fc }
@@ -51,4 +51,3 @@ backend web_servers
         redirect scheme https if !{ ssl_fc }
         server 175536-web-01 35.153.66.229 check
         server 175536-web-02 52.91.118.24 check
-        

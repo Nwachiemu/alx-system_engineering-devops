@@ -4,7 +4,7 @@ global
         log /dev/log    local0
         log /dev/log    local1 notice
         chroot /var/lib/haproxy
-        stats socket /run/haproxy/admin.sock mode 660 level admin
+        stats socket /run/haproxy/admin.sock mode 660 level admin expose-fd listeners
         stats timeout 30s
         user haproxy
         group haproxy
@@ -14,13 +14,10 @@ global
         ca-base /etc/ssl/certs
         crt-base /etc/ssl/private
 
-	tune.ssl.default-dh-param 2048	
-
-        # Default ciphers to use on SSL-enabled listening sockets.
-        # For more information, see ciphers(1SSL). This list is from:
-        #  https://hynek.me/articles/hardening-your-web-servers-ssl-ciphers/
-        ssl-default-bind-ciphers ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS
-        ssl-default-bind-options no-sslv3
+        # See: https://ssl-config.mozilla.org/#server=haproxy&server-version=2.0.3&config=intermediate
+        ssl-default-bind-ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-S>
+        ssl-default-bind-ciphersuites TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256
+        ssl-default-bind-options ssl-min-ver TLSv1.2 no-tls-tickets
 
 defaults
         log     global
@@ -38,17 +35,26 @@ defaults
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
 
-
-frontend nwachiemuchay.tech
-        bind 0:80
-        bind 0:443 ssl crt /etc/ssl/private/nwachiemuchay.tech.pem
+frontend www-http
+        bind *:80
+        mode http
         http-request redirect scheme https code 301 unless { ssl_fc }
-        option forwardfor
-        default_backend nwachiemuchay.tech_backend
+        http-request set-header X_Forwarded-Proto http
+        default_backend www-backend
 
-backend nwachiemuchay.tech_backend
+frontend www-https
+        bind *:443 ssl crt /etc/haproxy/certs/www.nwachiemuchay.tech.pem
+        http-request set-header X-Forwarded-Proto https
+        default_backend www-backend
+
+backend www-backend
         balance roundrobin
+<<<<<<< HEAD
         server 175536-web-01 35.153.66.229 check
         server 175536-web-02 52.91.118.24 check
         
 >>>>>>> 966fa9d (added files)
+=======
+        server 175536-web-01 35.153.66.229:80 check
+        server 175536-web-02 52.91.118.24:80 check
+>>>>>>> da92613 (updated)
