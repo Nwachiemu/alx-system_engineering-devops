@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 global
         log /dev/log    local0
         log /dev/log    local1 notice
@@ -49,12 +47,5 @@ frontend www-https
 
 backend www-backend
         balance roundrobin
-<<<<<<< HEAD
-        server 175536-web-01 35.153.66.229 check
-        server 175536-web-02 52.91.118.24 check
-        
->>>>>>> 966fa9d (added files)
-=======
         server 175536-web-01 35.153.66.229:80 check
         server 175536-web-02 52.91.118.24:80 check
->>>>>>> da92613 (updated)
