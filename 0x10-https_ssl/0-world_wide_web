@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Function to get info about the domains and subdomains
+# Function to get info about domains and subdomains
 
 get_domain_info() {
     domain=$1
