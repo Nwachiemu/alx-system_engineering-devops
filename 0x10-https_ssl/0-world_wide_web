@@ -18,7 +18,7 @@ get_domain_info() {
     done
 }
 
-# Check for required arguments
+# Check for required arg
 if [ $# -eq 1 ]; then
     get_domain_info "$1"
 elif [ $# -eq 2 ]; then
