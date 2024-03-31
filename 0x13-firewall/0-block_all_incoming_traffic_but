@@ -20,4 +20,4 @@ sudo ufw allow 443
 # Enable Fire Wall
 sudo ufw enable
 
-echo -e "Process Done.\n"
+echo -e "Process Completed.\n"
