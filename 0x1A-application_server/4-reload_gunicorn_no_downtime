@@ -1,1 +1,3 @@
-Lets see
+#!/usr/bin/env bash
+# Script to reload Gunicorn
+sudo systemctl daemon-reload
