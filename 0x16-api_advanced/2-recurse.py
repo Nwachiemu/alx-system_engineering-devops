@@ -17,9 +17,9 @@ def recurse(subreddit, hot_list=[], after="", count=0):
 
     try:
         r = requests.get(url.format(subreddit),
-                                headers=usr,
-                                params=params,
-                                allow_redirects=False)
+                         headers=usr,
+                         params=params,
+                         allow_redirects=False)
         if r.status_code == 404:
             return None
 
@@ -37,4 +37,3 @@ def recurse(subreddit, hot_list=[], after="", count=0):
 
     except Exception:
         return None
-    

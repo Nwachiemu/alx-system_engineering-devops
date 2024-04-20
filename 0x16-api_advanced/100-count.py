@@ -19,9 +19,9 @@ def count_words(subreddit, word_list, after=None, word_count=None):
 
     try:
         r = requests.get(url.format(subreddit),
-                                headers=user,
-                                params=params,
-                                allow_redirects=False)
+                         headers=user,
+                         params=params,
+                         allow_redirects=False)
 
         if r.status_code != 200:
             return

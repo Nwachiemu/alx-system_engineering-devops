@@ -13,8 +13,8 @@ def top_ten(subreddit):
 
     try:
         r = requests.get(url.format(subreddit),
-                                headers=usr, params={'limit': 10},
-                                allow_redirects=False)
+                         headers=usr, params={'limit': 10},
+                         allow_redirects=False)
 
         if r.status_code == 200:
             info = r.json()
